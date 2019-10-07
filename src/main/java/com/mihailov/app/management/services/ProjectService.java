@@ -19,4 +19,11 @@ public class ProjectService {
             throw new ProjectIdException("Project ID " + project.getProjectIdentifier() + "  not good.");
         }
     }
+
+    public ProjectEntity findByProjectId(String projectId) {
+        ProjectEntity project = projectRepository.findByProjectIdentifier(projectId.toUpperCase());
+        if (project == null)
+            throw new ProjectIdException("Project ID "+projectId+"not found.");
+        return project;
+    }
 }
