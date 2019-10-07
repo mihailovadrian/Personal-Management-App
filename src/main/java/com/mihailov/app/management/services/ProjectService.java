@@ -23,7 +23,11 @@ public class ProjectService {
     public ProjectEntity findByProjectId(String projectId) {
         ProjectEntity project = projectRepository.findByProjectIdentifier(projectId.toUpperCase());
         if (project == null)
-            throw new ProjectIdException("Project ID "+projectId+"not found.");
+            throw new ProjectIdException("Project ID " + projectId + "not found.");
         return project;
+    }
+
+    public Iterable<ProjectEntity> findAllProjects() {
+        return projectRepository.findAll();
     }
 }
