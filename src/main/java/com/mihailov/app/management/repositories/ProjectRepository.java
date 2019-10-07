@@ -10,4 +10,5 @@ public interface ProjectRepository extends CrudRepository<ProjectEntity, Long> {
 
     @Override
     Iterable<ProjectEntity> findAll();
+
 }

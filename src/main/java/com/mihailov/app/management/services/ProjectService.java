@@ -30,4 +30,10 @@ public class ProjectService {
     public Iterable<ProjectEntity> findAllProjects() {
         return projectRepository.findAll();
     }
+
+    public void deleteProject(String projectId) {
+        ProjectEntity projectEntity = projectRepository.findByProjectIdentifier(projectId.toUpperCase());
+        if (projectEntity == null) throw new ProjectIdException("Project doesnt exist :" + projectId);
+        projectRepository.delete(projectEntity);
+    }
 }
