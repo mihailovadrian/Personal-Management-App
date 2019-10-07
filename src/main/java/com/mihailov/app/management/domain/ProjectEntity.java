@@ -1,6 +1,10 @@
 package com.mihailov.app.management.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -8,13 +12,25 @@ public class ProjectEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String projectName;
-    private String projectIdentifier;
-    private String description;
-    private Date start_data;
-    private Date end_date;
 
+    @NotBlank(message = "Project Name required")
+    private String projectName;
+
+    @NotBlank(message = "Project Identifier required")
+    @Size(min = 4, max = 5, message = "PLease use 4 -> 5 characters")
+    @Column(updatable = false, unique = true)
+    private String projectIdentifier;
+
+    @NotBlank(message = "Description required")
+    private String description;
+
+    @JsonFormat(pattern = "dd-mm-yyyy")
+    private Date start_data;
+    @JsonFormat(pattern = "dd-mm-yyyy")
+    private Date end_date;
+    @JsonFormat(pattern = "dd-mm-yyyy")
     private Date created_at;
+    @JsonFormat(pattern = "dd-mm-yyyy")
     private Date updated_at;
 
     public ProjectEntity() {
