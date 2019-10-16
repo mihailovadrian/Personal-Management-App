@@ -1,6 +1,7 @@
 package com.mihailov.app.management.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -32,8 +33,8 @@ public class ProjectEntity {
     private Date created_at;
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date updated_at;
-    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy = "projectEntity")
-
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "projectEntity")
+    @JsonIgnore
     private Backlog backlog;
 
     public ProjectEntity() {
