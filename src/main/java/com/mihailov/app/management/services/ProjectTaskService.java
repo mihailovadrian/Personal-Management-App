@@ -71,4 +71,10 @@ public class ProjectTaskService {
 
         return projectTaskRepository.save(projectTask);
     }
+
+    public void deletePTByProjectSq(String backlogId, String pt_id) {
+        ProjectTask projectTask = findPTByProjectSQ(backlogId, pt_id);
+
+        projectTaskRepository.delete(projectTask);
+    }
 }

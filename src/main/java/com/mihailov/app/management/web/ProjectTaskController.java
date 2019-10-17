@@ -46,6 +46,12 @@ public class ProjectTaskController {
         if (errorMap != null) return errorMap;
 
         ProjectTask task = projectTaskService.updateByProjectSq(projectTask, backlogId, pt_id);
-        return new ResponseEntity < ProjectTask > (task,HttpStatus.OK);
+        return new ResponseEntity<ProjectTask>(task, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{backlogId}/{pt_id}")
+    public ResponseEntity<?> deleteProjectTask(@PathVariable String backlogId, @PathVariable String pt_id) {
+        projectTaskService.deletePTByProjectSq(backlogId, pt_id);
+        return new ResponseEntity<String>("Project Task with id: " + pt_id + " was deleted.", HttpStatus.OK);
     }
 }
