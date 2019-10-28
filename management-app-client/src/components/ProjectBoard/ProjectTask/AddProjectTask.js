@@ -7,8 +7,9 @@ import PropTypes from "prop-types";
 
 class AddProjectTask extends Component {
   constructor(props) {
-    const { id } = this.props.match.params;
     super(props);
+    const { id } = this.props.match.params;
+
     this.state = {
       summary: "",
       acceptanceCriteria: null,
@@ -54,7 +55,6 @@ class AddProjectTask extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              y
               <Link to={`/projectBoard/${id}`} className="btn btn-light">
                 Back to Project Board
               </Link>
@@ -72,7 +72,9 @@ class AddProjectTask extends Component {
                     value={this.state.summary}
                     onChange={this.onChange}
                   />
-                  {errors.summary && <div className="invalid-feedback"></div>}
+                  {errors.summary && (
+                    <div className="invalid-feedback">{errors.summary} </div>
+                  )}
                 </div>
 
                 <div className="form-group">
@@ -86,7 +88,9 @@ class AddProjectTask extends Component {
                     onChange={this.onChange}
                   />
                   {errors.acceptanceCriteria && (
-                    <div className="invalid-feedback"></div>
+                    <div className="invalid-feedback">
+                      {errors.acceptanceCriteria}
+                    </div>
                   )}
                 </div>
 
